@@ -1,0 +1,66 @@
+<html>
+
+  <body>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <div id="sankey_multiple" id="newstyle">
+
+      <script type="text/javascript">
+        google.charts.load("current", {
+          packages: ["sankey"]
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'From');
+          data.addColumn('string', 'To');
+          data.addColumn('number', 'Weight');
+          data.addRows([
+            ['Kathy', 'Bobbie (work)', 3],
+            ['Lucas (external)', 'Bobbie (work)', 1],
+            ['Jenifer (external)', 'Bobbie (work)', 2],
+            ['Bobbie (work)', 'Angela', 1],
+            ['Bobbie (work)', 'Sean', 1],
+            ['Bobbie (work)', 'Micky (external)', 2],
+            ['Bobbie (work)', 'Sue (external)', 2],
+          ]);
+
+          // Set chart options
+          var colors = ['#0177ff', '#E23115', '#0177ff', '#E23115'];
+
+          var options = {
+            height: 300,
+            width: 500,
+            sankey: {
+              link: {
+                color: {
+                  fill: '#B3D7FF', 
+                  colors: colors
+                }
+              },
+            node: {
+              labelPadding: 10,
+              nodePadding: 60,
+              width: 10,
+              colors: colors,
+              label: {
+                fontName: 'Helvetica',
+                fontSize: 12,
+                bold: true,
+                color: '#008EED',
+              }
+            },
+          },
+        };
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.Sankey(document.getElementById('sankey_multiple'));
+        chart.draw(data, options);
+        }
+
+      </script>
+    </div>
+  </body>
+
+</html>
